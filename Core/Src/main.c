@@ -103,7 +103,7 @@ int main(void)
   HAL_StatusTypeDef ready = HAL_I2C_IsDeviceReady(&hi2c1, 0b1101000 << 1, 1, 100);
   if(ready == HAL_OK)
   {
-	  printf("MPU6050 is ready \n");
+	  printf("MPU6050 is ready \n\r\b");
   }
   else
   {
@@ -115,11 +115,35 @@ int main(void)
 
   if(gyro_ready == HAL_OK)
   {
-	  printf("Gyro is configured \n");
+	  printf("Gyro is configured \n\r\b");
   }
   else
   {
 	  printf("Gyro cannot be configured. Try again \n");
+  }
+
+  uint8_t acc_config = 0b00001000;
+  HAL_StatusTypeDef acc_ready = HAL_I2C_Mem_Write(&hi2c1, 0b1101000 << 1, 28, 1, &acc_config, 1, 100);
+
+  if(acc_ready == HAL_OK)
+  {
+	  printf("Acc is configured \n\r\b");
+  }
+  else
+  {
+	  printf("Acc cannot be configured. Try again \n");
+  }
+
+  uint8_t sleep_config = 0;
+  HAL_StatusTypeDef sleep_ready = HAL_I2C_Mem_Write(&hi2c1, 0b1101000 << 1, 107, 1, &sleep_config, 1, 100);
+
+  if(sleep_ready == HAL_OK)
+  {
+	  printf("Sleep Mode is configured \n\r\b");
+  }
+  else
+  {
+	  printf("Sleep Mode is configured. Try again \n");
   }
 
 
@@ -129,6 +153,12 @@ int main(void)
   /* USER CODE BEGIN WHILE */
 	while (1) {
     /* USER CODE END WHILE */
+		uint8_t data[2];
+		uint16_t x_acc;
+		HAL_I2C_Mem_Read(&hi2c1, 0b1101000 << 1, 59, 1, data, 2, 100);
+		x_acc = ((uint16_t)data[0] << 8) + data[1];
+		printf("x axis acceleration: %d \n\r\b", x_acc);
+		HAL_Delay(1000);
 
     /* USER CODE BEGIN 3 */
 	}
