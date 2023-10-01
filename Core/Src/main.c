@@ -99,9 +99,9 @@ int main(void)
   MX_GPIO_Init();
   MX_I2C1_Init();
   MX_USART2_UART_Init();
+
   /* USER CODE BEGIN 2 */
   mpu6050_init();
-
   /* USER CODE END 2 */
 
   /* Infinite loop */

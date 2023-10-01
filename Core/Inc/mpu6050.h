@@ -13,8 +13,9 @@
 
 /* Registers for the MPU6050*/
 
-/* General config (Sampling Rate, Bandwidth, Delay) */
+/* General config (Sampling Rate, Bandwidth, Delay, Full Scale Range) */
 #define SENSOR_CONFIG_REG 0x1A
+#define FULL_SCALE_RANGE 8000.0
 
 /* Gyroscope Config */
 #define GYRO_CONFIG_REG 0x1B
@@ -24,9 +25,14 @@
 #define GYRO_RANGE_2000 0xA
 
 /* Gyroscope Measurements */
-#define GYRO_XOUT 0x43
-#define GYRO_YOUT 0x45
-#define GYRO_ZOUT 0x47
+#define GYRO_XOUT_HIGH 0x43
+#define GYRO_XOUT_LOW 0x44
+
+#define GYRO_YOUT_HIGH 0x45
+#define GYRO_YOUT_LOW 0x46
+
+#define GYRO_ZOUT_HIGH 0x47
+#define GYRO_ZOUT_LOW 0x48
 
 /* Accelerometer Config */
 #define ACCEL_CONFIG_REG 0x1C
@@ -35,9 +41,14 @@
 #define ACCEL_RANGE_16G 0xA
 
 /* Accelerometer Measurements */
-#define ACCEL_XOUT 0x3B
-#define ACCEL_YOUT 0x3D
-#define ACCEL_ZOUT 0x3F
+#define ACCEL_XOUT_HIGH 0x3B
+#define ACCEL_XOUT_LOW 0x3C
+
+#define ACCEL_YOUT_HIGH 0x3D
+#define ACCEL_YOUT_LOW 0x3E
+
+#define ACCEL_ZOUT_HIGH 0x3F
+#define ACCEL_ZOUT_LOW 0x40
 
 /* Sleep Mode Config */
 #define SLEEP_MODE_REG 0x6B
