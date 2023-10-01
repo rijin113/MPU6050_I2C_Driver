@@ -77,7 +77,8 @@ typedef struct data_init accel_data;
 
 /* MPU6050 Sensor Functions */
 void mpu6050_init();
-void mpu6050_read();
+void mpu6050_read_gyro();
+void mpu6050_read_accel();
 
 #endif /* MPU6050_H_ */
 

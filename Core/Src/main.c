@@ -108,7 +108,11 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1) {
     /* USER CODE END WHILE */
-    mpu6050_read();
+	printf(" ------------------------------------------------------------------------- \n\r");
+    mpu6050_read_accel();
+    mpu6050_read_gyro();
+    printf(" ------------------------------------------------------------------------- \n\r");
+    HAL_Delay(500);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
