@@ -5,6 +5,7 @@
  *      Author: Rijin
  */
 
+#include <stdio.h>
 
 #ifndef MPU6050_H_
 #define MPU6050_H_
@@ -13,9 +14,10 @@
 
 /* Registers for the MPU6050*/
 
-/* General config (Sampling Rate, Bandwidth, Delay, Full Scale Range) */
+/* General config (Sampling Rate, Bandwidth, Delay, Sensitivity) */
 #define SENSOR_CONFIG_REG 0x1A
-#define FULL_SCALE_RANGE 8000.0
+#define ACCEL_SENSITIVITY 8192.0
+#define GYRO_SENSITIVITY 65.5
 
 /* Gyroscope Config */
 #define GYRO_CONFIG_REG 0x1B
@@ -55,8 +57,25 @@
 #define SLEEP_MODE_ON  0x40
 #define SLEEP_MODE_OFF 0x00
 
-/* MPU6050 Sensor Functions */
+/* Accelerometer & Gyroscope Data Initialization */
+struct data_init {
+    uint8_t x_data[2];
+    int16_t x_val_raw;
+    int16_t x_val;
 
+    uint8_t y_data[2];
+    int16_t y_val_raw;
+    int16_t y_val;
+
+    uint8_t z_data[2];
+    int16_t z_val_raw;
+    int16_t z_val;
+};
+
+typedef struct data_init gyro_data;
+typedef struct data_init accel_data;
+
+/* MPU6050 Sensor Functions */
 void mpu6050_init();
 void mpu6050_read();
 
