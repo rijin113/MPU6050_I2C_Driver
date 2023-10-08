@@ -32,6 +32,10 @@ void mpu6050_init()
   }
 }
 
+/* Note: Sensitivity will change depending on the range configured for
+ * the gyro and the accelerometer. Currently, it is not user configurable.
+ */
+
 void mpu6050_read_gyro()
 {
 	gyro_data gyro;
